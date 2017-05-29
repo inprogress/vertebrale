@@ -10,5 +10,5 @@ db_session = scoped_session(sessionmaker(autocommit=False,autoflush= False, bind
 Base.query = db_session.query_property()
 
 def init_db(actualEngine=engine):
-    from models import Ingredient
+    from models import Food
     Base.metadata.create_all(bind=actualEngine)

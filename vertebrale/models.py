@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float
 
-from database import Base
+from base import Base
 
 class Ingredient(Base):
     __tablename__ = 'ingredient'

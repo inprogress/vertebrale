@@ -9,6 +9,6 @@ class TestDatabase(unittest.TestCase):
         db_session.configure(bind=engine)
         init_db(engine)
         
-        from models import Ingredient
-        result = db_session.query(Ingredient).all()
+        from models import Food
+        result = db_session.query(Food).all()
         self.assertEqual(len(result), 0)

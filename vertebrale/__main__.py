@@ -2,9 +2,9 @@
 
 from flask import Flask
 
-from database import db_session, init_db
+from vertebrale.database import db_session, init_db
 from flask_graphql import GraphQLView
-from schema import schema
+from vertebrale.schema import schema
 
 app = Flask(__name__)
 #app.debug = True

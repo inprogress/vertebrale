@@ -1,7 +1,7 @@
 import graphene
 from graphene_sqlalchemy import SQLAlchemyConnectionField, SQLAlchemyObjectType
 
-from models import Food as FoodModel
+from vertebrale.models import Food as FoodModel
 
 class Food(SQLAlchemyObjectType):
     class Meta:

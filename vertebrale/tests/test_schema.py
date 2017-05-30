@@ -5,11 +5,15 @@ from graphene.test import Client
 from vertebrale.schema import schema
 
 class TestSchema(TestCase):
-    def test_food(self):
+    def setUp(self):
         engine = create_engine('sqlite:///:memory:')
         db_session.configure(bind=engine)
         init_db(engine)
 
+    def tearDown(self):
+        db_session.remove()
+
+    def test_food(self):
         from vertebrale.models import Food
         db_session.add(Food(name='A', energy=1))
         db_session.add(Food(name='B', energy=1))

@@ -9,15 +9,25 @@ class TestSchema(TestCase):
         engine = create_engine('sqlite:///:memory:')
         db_session.configure(bind=engine)
         init_db(engine)
+        from vertebrale.models import Food
+        db_session.add(Food(name='A', energy=1))
+        db_session.add(Food(name='B', energy=1))
+        db_session.commit()
+        self.client = Client(schema)
 
     def tearDown(self):
         db_session.remove()
 
     def test_food(self):
-        from vertebrale.models import Food
-        db_session.add(Food(name='A', energy=1))
-        db_session.add(Food(name='B', energy=1))
-        db_session.commit()
+        self.assertMatchSnapshot(self.client.execute('''{ foods { name } }'''))
 
-        client = Client(schema)
-        self.assertMatchSnapshot(client.execute('''{ foods { name } }'''))
+    def test_filter_food(self):
+        query = ''' {
+            foods(name: "A") {
+                id
+                name
+                energy
+            }
+        }
+        '''.strip()
+        self.assertMatchSnapshot(self.client.execute(query))

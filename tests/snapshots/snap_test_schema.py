@@ -19,3 +19,15 @@ snapshots['TestSchema::test_food 1'] = {
         ]
     }
 }
+
+snapshots['TestSchema::test_filter_food 1'] = {
+    'data': {
+        'foods': [
+            {
+                'id': '1',
+                'name': 'A',
+                'energy': 1.0
+            }
+        ]
+    }
+}

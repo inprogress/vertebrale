@@ -22,9 +22,10 @@ def startImport():
         result = {}
 
         for i in data:
+            if len(i[0]) == 0:
+                continue
             if i[0] not in result:
                 result[i[0]] = i
-            break
 
         for key, category in result.items():
             c = Category()

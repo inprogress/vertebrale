@@ -10,5 +10,5 @@ db_session = scoped_session(sessionmaker(autocommit=False,autoflush= False, bind
 Base.query = db_session.query_property()
 
 def init_db(actualEngine=engine):
-    from vertebrale.models import Food
+    import vertebrale.models
     Base.metadata.create_all(bind=actualEngine)

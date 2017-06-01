@@ -20,4 +20,4 @@ def shutdown_session(exeption=None):
 if __name__ == '__main__':
     init_db()
     startImport()
-    app.run()
+    app.run(host='0.0.0.0')

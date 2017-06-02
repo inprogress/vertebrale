@@ -1,7 +1,7 @@
 import csv
 
 from vertebrale.database import db_session
-from vertebrale.models import Category, CategoryTranslation, LanguageCode
+from vertebrale.models import Category 
 
 def startImport():
     with open('data/GenericFoods.csv', newline='') as csvfile:
@@ -13,31 +13,19 @@ def startImport():
             row2index[e] = i
 
         d = row2index["category D"]
-        f = row2index["category F"]
-        i = row2index["category I"]
-        e = row2index["category E"]
 
-        data = list(map(lambda x: [x[d], x[f], x[i], x[e]], rows[1:]))
+        data = list(map(lambda x: x[d], rows[1:]))
 
         result = {}
 
         for i in data:
-            if len(i[0]) == 0:
+            if len(i) == 0:
                 continue
             if i[0] not in result:
                 result[i[0]] = i
 
         for key, category in result.items():
-            c = Category()
-            c.translations.append(CategoryTranslation(
-                languageCode=LanguageCode.GERMAN, name=category[0]))
-            c.translations.append(CategoryTranslation(
-                languageCode=LanguageCode.FRENCH, name=category[1]))
-            c.translations.append(CategoryTranslation(
-                languageCode=LanguageCode.ITALIAN, name=category[2]))
-            c.translations.append(CategoryTranslation(
-                languageCode=LanguageCode.ENGLISH, name=category[3]))
+            c = Category(name=category)
             db_session.add(c)
         db_session.commit()
         print("Import categories done!")
-

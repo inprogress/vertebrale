@@ -17,21 +17,11 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(len(result), 0)
 
     def test_categories(self):
-        from vertebrale.models import Category, CategoryTranslation, LanguageCode
+        from vertebrale.models import Category
 
-        cat_hello = Category()
-        translation = CategoryTranslation(
-                languageCode=LanguageCode.GERMAN,
-                name='Hallo')
-        cat_hello.translations.append(translation)
-
-        db_session.add(cat_hello)
-        db_session.add(translation)
+        category = Category(name='Test')
+        db_session.add(category)
         db_session.commit()
-        db_session.query(CategoryTranslation)
 
-        db_session.query()
         result = db_session.query(Category).all()
         self.assertEqual(len(result), 1)
-
-        self.assertEqual(len(result[0].translations), 1)

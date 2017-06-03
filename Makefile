@@ -1,6 +1,9 @@
 init:
 	pip install -r requirements.txt
 
+migrate:
+	alembic upgrade head
+
 test:
 	nosetests
 

@@ -5,7 +5,6 @@ from flask import Flask
 from vertebrale.database import db_session, init_db
 from flask_graphql import GraphQLView
 from vertebrale.schema import schema
-from vertebrale.importer import startImport
 
 app = Flask(__name__)
 #app.debug = True
@@ -19,5 +18,4 @@ def shutdown_session(exeption=None):
 
 if __name__ == '__main__':
     init_db()
-    startImport()
     app.run(host='0.0.0.0')

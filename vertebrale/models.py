@@ -10,7 +10,7 @@ class Category(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     sub_categories = relationship('Category')
-    parent_id = Column(Integer, ForeignKey('category.id'))
+    parent_category = Column(Integer, ForeignKey('category.id'))
 
 class Food(Base):
     __tablename__ = 'food'

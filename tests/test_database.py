@@ -28,6 +28,6 @@ class TestDatabase(unittest.TestCase):
         result = db_session.query(Category).all()
         self.assertEqual(len(result), 2)
 
-        result = db_session.query(Category).filter(Category.parent_id == None).all()
+        result = db_session.query(Category).filter(Category.parent_category == None).all()
         self.assertEqual(len(result), 1)
         self.assertEqual(len(result[0].sub_categories), 1)

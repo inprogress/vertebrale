@@ -23,7 +23,6 @@ singledispatch==3.4.0.3
 six==1.10.0
 snapshottest==0.4.0
 SQLAlchemy==1.1.10
-sqlalchemy-migrate==0.11.0
 sqlparse==0.2.3
 Tempita==0.5.2
 termcolor==1.1.0

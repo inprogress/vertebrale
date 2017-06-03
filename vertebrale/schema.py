@@ -26,6 +26,6 @@ class Query(graphene.ObjectType):
     
     def resolve_categories(self, args, context, info):
         query = Category.get_query(context)
-        return query.all()
+        return query.filter(CategoryModel.parent_category == None).all()
 
 schema = graphene.Schema(query=Query, types=[Food, Category])
